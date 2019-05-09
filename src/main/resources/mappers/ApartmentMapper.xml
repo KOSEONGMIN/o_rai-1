@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.o_rai.mapper.ApartmentMapper">
+
+	<!-- android query -->
+	
+	<select id="getAllApartment" resultType="com.o_rai.domain.ApartmentVO">
+	select * from apt_table
+	</select>
+	
+	<select id="getSearchedApartment" resultType="com.o_rai.domain.ApartmentVO">
+	select * from apt_table where apt_name like CONCAT('%', #{apt_name}, '%') or address like CONCAT('%', #{apt_name}, '%')
+	</select>
+	
+	<select id="getSelectedApartment" resultType="com.o_rai.domain.ApartmentVO">
+	select * from apt_table where apt_index=#{apt_index}
+	</select>
+	
+	<!-- web query -->
+	
+	<select id="emailOverlayChk" resultType="com.o_rai.domain.ApartmentVO">
+	select * from apt_table where apt_id=#{apt_id}
+	</select>
+	
+	<insert id="insertApartment">
+	insert into apt_table (apt_id, apt_password, apt_phone, apt_name, address, latitude, longitude, fee, open_time, close_time, bookable_count, total_count) values
+	(#{apt_id}, #{apt_password}, #{apt_phone}, #{apt_name}, #{address}, #{latitude}, #{longitude}, #{fee}, #{open_time}, #{close_time}, #{bookable_count}, #{total_count})
+	</insert>
+	
+	<select id="loginApartment" resultType="String">
+	select apt_password from apt_table where apt_id=#{apt_id}
+	</select>
+	
+</mapper>

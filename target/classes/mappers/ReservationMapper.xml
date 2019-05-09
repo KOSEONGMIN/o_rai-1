@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.o_rai.mapper.ReservationMapper">
+	
+	<insert id="insertReservation">
+	insert into reservation_table (user_index, apt_index, start_time, finish_time, bill, is_used) values
+	(#{user_index}, #{apt_index}, #{start_time}, #{finish_time}, #{bill}, #{is_used})
+	</insert>
+	
+	<select id="getReservationList" resultType="com.o_rai.domain.ReservationVO">
+	SELECT reservation.book_index, reservation.user_index, reservation.apt_index, apt.apt_name, usr.car_number,  usr.car_type, usr.user_phone, reservation.start_time, reservation.finish_time, reservation.bill, reservation.is_used
+	FROM apt_user_list.reservation_table reservation
+	INNER JOIN apt_user_list.user_table usr
+	ON reservation.user_index = usr.user_index
+	INNER JOIN apt_user_list.apt_table apt
+	ON reservation.apt_index = apt.apt_index
+    WHERE reservation.user_index = #{user_index}
+    ORDER BY reservation.start_time DESC;
+	</select>
+	
+	<select id="getBookedCount" resultType="com.o_rai.domain.ReservationVO">
+	select * 
+	from reservation_table
+	<![CDATA[
+	where apt_index=#{apt_index} 
+		and ((#{start_time}>=start_time) and (#{start_time}<finish_time)) 
+		or ((#{finish_time}>start_time) and (#{finish_time}<=finish_time)) 
+		or ((#{start_time}<=start_time) and (#{finish_time}>=finish_time))
+	]]>
+	</select>
+	
+	<update id="modifyReservation">
+	update reservation_table
+		set start_time = #{start_time},
+			finish_time = #{finish_time},
+			bill = #{bill}
+	where book_index = #{book_index}
+	</update>
+	
+	<update id="disableReservation">
+	delete from reservation_table where book_index = #{book_index}
+	</update>
+	
+	<select id="fcmRequest" resultType="com.o_rai.domain.ReservationVO">
+	SELECT  apt.using_count, apt.total_count, usr.user_token
+	FROM apt_user_list.reservation_table reservation 
+	INNER JOIN apt_user_list.user_table usr
+	ON reservation.user_index = usr.user_index 
+	INNER JOIN apt_user_list.apt_table apt 
+	ON reservation.apt_index = apt.apt_index  
+	<![CDATA[
+	where (TIMESTAMPDIFF(MINUTE, current_timestamp(), reservation.start_time) < 15) && (TIMESTAMPDIFF(MINUTE, current_timestamp(), reservation.start_time) > 0);
+	]]>
+	</select>
+	
+</mapper>
