@@ -1,6 +1,7 @@
 package com.o_rai.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.o_rai.domain.ApartmentVO;
 
@@ -16,5 +17,5 @@ public interface ApartmentDAO {
 	
 	public int insertApartment(ApartmentVO vo);
 	
-	public boolean loginApartment(ApartmentVO vo);
+	public List<ApartmentVO> loginApartment(Map<String, Object> map);
 }

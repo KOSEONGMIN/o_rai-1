@@ -110,10 +110,17 @@
 		  </div>	
           <div class="col-md-2">
             <ul class="list-inline sm-pull-none sm-text-center text-right text-white mb-sm-20 mt-10">
-              <li class="m-0 pl-10"> <a href="<c:url value='login' />" class="text-white ajaxload-popup"><i class="fa fa-user-o mr-5 text-white"></i> Login /</a> </li>
-              <li class="m-0 pl-0 pr-10"> 
-                <a href="<c:url value='selectJoinChoice' />" class="text-white ajaxload-popup"><i class="fa fa-edit mr-5"></i>Register</a> 
-              </li>
+            	<c:choose>
+            		<c:when test="${sessionVO eq null }" >
+            			<li class="m-0 pl-10"> <a href="<c:url value='login' />" class="text-white ajaxload-popup"><i class="fa fa-user-o mr-5 text-white"></i> Login /</a> </li>
+            			<li class="m-0 pl-0 pr-10"> 
+                			<a href="<c:url value='selectJoinChoice' />" class="text-white ajaxload-popup"><i class="fa fa-edit mr-5"></i>Register</a> 
+              			</li>
+            		</c:when>
+            		<c:otherwise>
+            			 <li class="m-0 pl-10"> <a href="<c:url value='logoutProc' />" class="text-white ajaxload-popup"><i class="fa fa-user-o mr-5 text-white"></i> Logout </a> </li>             
+            		</c:otherwise>
+            	</c:choose>
             </ul>
           </div>
         </div>
@@ -121,7 +128,6 @@
     </div>
     <div style="background: url(/resources/img/background.png); width:1580px; height:385px">
     	
-    
     </div>
     
     <div class="header-nav">

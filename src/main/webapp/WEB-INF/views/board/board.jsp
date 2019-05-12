@@ -178,60 +178,70 @@
               		</thead> 
               		<tbody> 
               			<tr> 
-              				<th scope="row">1</th> 
+              				<th scope="row">10</th> 
               				<td><a style="cursor:pointer" class="userDetail">Mark</a></td> 
               				<td>Otto</td> 
-              				<td>@mdo</td>
+              				<td>12:00 ~ 13:00</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
               				<td>대기중</td> 
               			</tr> 
               			<tr> 
-              				<th scope="row">2</th> 
+              				<th scope="row">9</th> 
               				<td><a style="cursor:pointer" class="userDetail">Jacob</a></td> 
               				<td>Thornton</td> 
-              				<td>@fat</td>
+              				<td>10:00 ~ 11:00</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
               				<td>대기중</td> 
               			</tr> 
               			<tr> 
-              				<th scope="row">3</th> 
+              				<th scope="row">8</th> 
               				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
               				<td>the Bird</td> 
-              				<td>@twitter</td>
+              				<td>09:00 ~ 10:30</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
               				<td>대기중</td> 
               			</tr>
               			<tr> 
-              				<th scope="row">3</th> 
+              				<th scope="row">7</th> 
               				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
               				<td>the Bird</td> 
-              				<td>@twitter</td>
+              				<td>09:00 ~ 10:30</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
               				<td>대기중</td> 
               			</tr> 
               			<tr> 
-              				<th scope="row">3</th> 
+              				<th scope="row">6</th> 
               				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
               				<td>the Bird</td> 
-              				<td>@twitter</td>
+              				<td>09:00 ~ 10:30</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
               				<td>대기중</td> 
               			</tr> 
               			<tr> 
-              				<th scope="row">3</th> 
+              				<th scope="row">5</th> 
               				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
               				<td>the Bird</td> 
-              				<td>@twitter</td>
+              				<td>09:00 ~ 10:30</td>
+              				<td><button class="btn-primary">입차</button>
+              					<button class="btn-danger">출차</button>
+              				</td>
+              				<td>사용중</td> 
+              			</tr> 
+              			<tr> 
+              				<th scope="row">4</th> 
+              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
+              				<td>the Bird</td> 
+              				<td>10:00 ~ 10:30</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
@@ -241,62 +251,32 @@
               				<th scope="row">3</th> 
               				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
               				<td>the Bird</td> 
-              				<td>@twitter</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>사용중</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">3</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>@twitter</td>
+              				<td>09:45 ~ 10:30</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
               				<td>사용중</td> 
               			</tr>
               			<tr> 
-              				<th scope="row">3</th> 
+              				<th scope="row">2</th> 
               				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
               				<td>the Bird</td> 
-              				<td>@twitter</td>
+              				<td>09:30 ~ 10:00</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
               				<td>사용중</td> 
               			</tr> 
               			<tr> 
-              				<th scope="row">3</th> 
+              				<th scope="row">1</th> 
               				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
               				<td>the Bird</td> 
-              				<td>@twitter</td>
+              				<td>09:00 ~ 10:30</td>
               				<td><button class="btn-primary">입차</button>
               					<button class="btn-danger">출차</button>
               				</td>
               				<td>사용완료</td> 
               			</tr> 
-              			<tr> 
-              				<th scope="row">3</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>@twitter</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>사용완료</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">3</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>@twitter</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>사용완료</td> 
-              			</tr>   
               		</tbody> 
               	</table> 
               </div>

@@ -2,9 +2,11 @@ package com.o_rai.cmmn;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.o_rai.domain.SessionVO;
 
 public class Interceptor extends HandlerInterceptorAdapter {
 
@@ -13,12 +15,19 @@ public class Interceptor extends HandlerInterceptorAdapter {
          throws Exception {
       // TODO Auto-generated method stub
       
-      System.out.println("#### ÇöÀç ¿äÃ» : " + request.getServletPath());
+      System.out.println("#### í˜„ì¬ìš”ì²­: " + request.getServletPath());
          
-      System.out.println("#### ÄÁÆ®·Ñ·¯ ½ÇÇà Àü¿¡ È£ÃâµÇ³ª?");
-         
-      System.out.println("#### ÇöÀç ¼¼¼Ç °ª : " + request.getSession());
+      System.out.println("#### ì„¸ì…˜ì •ë³´: " + request.getSession());
       
+      // í˜„ì¬ ì„¸ì…˜ì´ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ í™•ì¸
+   	  HttpSession session = request.getSession();
+   	  SessionVO sessionVO = (SessionVO) session.getAttribute("sessionVO");
+   		
+   	  // ë¡œê·¸ì¸ì´ ë˜ì–´ìˆì§€ ì•Šì„ ì‹œ í˜¸ì¶œ
+   	  if (sessionVO == null) {
+   		  response.sendRedirect("/login");
+   		  return false;
+   	  }
       
       return super.preHandle(request, response, handler);
    }
@@ -26,7 +35,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
    /*@Override
    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
          ModelAndView modelAndView) throws Exception {
-      System.out.println("######## ÄÁÆ®·Ñ·¯ ½ÇÇà ÈÄ¿¡ È£ÃâµÇ³ª?");
+      System.out.println("######## ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ È£ï¿½ï¿½Ç³ï¿½?");
 
       if (!"XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
 

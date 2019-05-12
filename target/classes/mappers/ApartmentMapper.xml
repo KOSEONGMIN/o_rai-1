@@ -30,8 +30,8 @@
 	(#{apt_id}, #{apt_password}, #{apt_phone}, #{apt_name}, #{address}, #{latitude}, #{longitude}, #{fee}, #{open_time}, #{close_time}, #{bookable_count}, #{total_count})
 	</insert>
 	
-	<select id="loginApartment" resultType="String">
-	select apt_password from apt_table where apt_id=#{apt_id}
+	<select id="loginApartment" resultType="com.o_rai.domain.ApartmentVO">
+	select * from apt_table where apt_id=#{email} and apt_password=#{pwd}
 	</select>
 	
 </mapper>

@@ -1,20 +1,30 @@
 package com.o_rai.controller;
 
-import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.o_rai.domain.ApartmentVO;
+import com.o_rai.cmmn.JsonUtil;
 import com.o_rai.service.FcmService;
+import com.o_rai.service.LoginService;
 
 @Controller
 public class MainController {
 	
 	@Inject
 	FcmService fcmSvc;
+	
+	@Autowired
+	private LoginService loginService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main() {
@@ -29,10 +39,21 @@ public class MainController {
 		return "main/login";
 	}
 
-	@RequestMapping(value = "/loginProc", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public String loginProc(@ModelAttribute ApartmentVO vo) {
+	@RequestMapping(value = "/loginProc", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String loginProc(@RequestParam Map<String, Object> map) {
 		
-		return "adf";
+		HashMap<String, Object> resultMap = loginService.loginProc(map);
+		
+		return JsonUtil.HashMapToJson(resultMap);
 	}
+	
+	@RequestMapping(value = "/logoutProc")
+	public String logoutProc(HttpServletRequest request) {
+		request.getSession().removeAttribute("sessionVO");
+		
+		return "redirect:/";
+	}
+	
 	
 }

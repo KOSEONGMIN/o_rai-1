@@ -84,7 +84,7 @@
                 <hr>
                 <p>로그인 하면 다양한 서비스를 제공받으실 수 있습니다</p>
                 
-                <form id="loginFrm" class="clearfix" action="/loginProc" method="post">
+                <form id="loginFrm" class="clearfix" action="">
                   <div class="row">
                     <div class="form-group col-md-12">
                       <label for="form_username_email">Email</label>
@@ -100,7 +100,7 @@
                   <div class="checkbox pull-left mt-15">
                   </div>
                   <div class="form-group pull-right mt-10">
-                    <button id="loginBtn" class="btn btn-danger btn-sm">Login</button>
+                  	<a href="#" onclick="loginCls.loginFn()">로그인</a>
                   </div>
                   <div class="clear text-center pt-10">
                   </div>
@@ -155,28 +155,12 @@
 
 <script>
 
-	var loginFn = function() {
-		
-		var emailInform = $("input[name='email']").val(),
-			pwdInform	= $("input[name='password']").val();
-		
-		if (!CmmnJsUtil.isEmpty(emailInform) 
-				|| !CmmnJsUtil.isEmpty(pwdInform)) {
-			alert("로그인 정보를 입력하세요!");
-		}
-		
-		
-	}
-
-	$(function() {
-		
-		$("#loginBtn").click(function(e) {
-			e.preventDefault();
+	var loginCls = {
 			
+		loginFn	: function() {
 			var emailInform = $("input[name='email']").val(),
 				pwdInform	= $("input[name='password']").val();
-		
-			
+						
 			if (CmmnJsUtil.isEmpty(emailInform) 
 					|| CmmnJsUtil.isEmpty(pwdInform)) {
 				alert("로그인 정보를 입력하세요!");
@@ -184,9 +168,36 @@
 				return;
 			}
 			
-			$("#loginFrm").submit();
+			var param = {
+					
+					"email"	: emailInform,
+					
+					"pwd" 	: pwdInform	
+			}
 			
-		})
+			$.ajax({
+				url : "<c:url value='/loginProc' />",
+				type : "post",
+				data : param,
+				success : function(data) {
+					console.log(data);
+					
+					if (data.result === "SUCCESS") {
+						alert(data.msg);
+						
+						self.location = "<c:url value = '/' />";
+					} else {
+						alert(data.msg);
+						
+						self.location = "<c:url value = '/login' />";
+					}
+				}
+			})
+			
+		}	
+	}
+
+	$(function() {
 		
 	})
 	

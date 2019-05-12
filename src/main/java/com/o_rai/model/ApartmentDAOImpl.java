@@ -1,6 +1,7 @@
 package com.o_rai.model;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -54,14 +55,10 @@ public class ApartmentDAOImpl implements ApartmentDAO {
 	}
 
 	@Override
-	public boolean loginApartment(ApartmentVO vo) {
+	public List<ApartmentVO> loginApartment(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		String searchedPwd = sqlSession.selectOne(namespace+".loginApartment");
 		
-		if(vo.getApt_password() == searchedPwd) {
-			return true;
-		} else {
-			return false;
-		}
+		return sqlSession.selectList(namespace+".loginApartment", map);
 	}
+	
 }
