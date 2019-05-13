@@ -37,6 +37,4 @@ public interface ApartmentDAO {
 	public Map<String, Object> selectBlackListPossibleChk(String param);
 
 	public Integer addIsReported(Map<String, Object> map);
-	
-	public int updateApartment(ApartmentVO vo);
 }

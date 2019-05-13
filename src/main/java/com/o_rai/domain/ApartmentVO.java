@@ -68,7 +68,6 @@ public class ApartmentVO {
 
 	// Validation in Database 
     // ********
-    private String postcode;
     private int using_count;
     private int isbookable;
     private int apt_report_count;
@@ -177,12 +176,6 @@ public class ApartmentVO {
 	public void setTotal_count(int total_count) {
 		this.total_count = total_count;
 	}
-	public String getPostcode() {
-		return postcode;
-	}
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
-	}
 	
 	@Override
 	public String toString() {
@@ -193,4 +186,5 @@ public class ApartmentVO {
 				+ using_count + ", isbookable=" + isbookable + ", apt_report_count=" + apt_report_count + ", apt_grade="
 				+ apt_grade + "]";
 	}
+	
 }
