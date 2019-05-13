@@ -116,5 +116,11 @@ public class ApartmentDAOImpl implements ApartmentDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+".addIsReported", map);
 	}
+
+	@Override
+	public int updateApartment(ApartmentVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace+".updateApartment",vo);
+	}
 	
 }

@@ -250,7 +250,8 @@
 	    		bookableCount	= $("#bookableCount").val(),
 		    	totalCount		= $("#totalCount").val(),
 		    	openTime		= $("#openTime").val(),
-		    	closeTime		= $("#closeTime").val();
+		    	closeTime		= $("#closeTime").val(),
+		    	postcode		= $("#postcode").val();
 	    	
 			// 이메일 체크
 			if (!this.emailChkFn(email)) {

@@ -3,9 +3,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.o_rai.cmmn.JsonUtil;
 import com.o_rai.domain.ApartmentVO;
 import com.o_rai.domain.FormVO;
+import com.o_rai.domain.SessionVO;
 import com.o_rai.model.ApartmentDAO;
 import com.o_rai.service.JoinService;
 
@@ -50,7 +53,8 @@ public class JoinController {
 	public String joinComplete(@ModelAttribute FormVO vo, RedirectAttributes rttr) {
 		System.out.println(vo);
 		
-		int result = joinSvc.formToApartment(vo);
+		ApartmentVO aptVO = joinSvc.formToApartment(vo);
+		int result = joinSvc.insertApartment(aptVO);
 		
 		if (result == 1) {
 			return "join/joinComplete.join";
@@ -88,9 +92,42 @@ public class JoinController {
 	
 	// 상세정보
 	@RequestMapping(value = "/joinDetail")
-	public String joinDetail() throws Exception {
+	public String joinDetail(HttpServletRequest request, ModelMap model) throws Exception {
 		// TODO: 정보 가져와서 form 맞춰서 jsp로 뿌려주기
 		
+		ApartmentVO aptVO = new ApartmentVO();
+		SessionVO session = new SessionVO();
+		
+		session = (SessionVO) request.getSession().getAttribute("sessionVO");
+		
+		aptVO.setApt_index(session.getApt_index());
+		
+		ApartmentVO resultAptVO = joinSvc.getSelectedApartment(aptVO);
+		
+		FormVO resultFormVO = joinSvc.apartmentToForm(resultAptVO);
+		
+		System.out.println(resultFormVO.toString());
+		
+		model.addAttribute("apartmentVO", resultAptVO);
+		model.addAttribute("formVO", resultFormVO);
+		
 		return "join/joinDetail.join";
+	}
+	
+	@RequestMapping(value = "/joinModify", method=RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public String joinModify(@ModelAttribute FormVO vo, RedirectAttributes rttr) {
+		System.out.println(vo.getFirstPhoneNum());
+		
+		ApartmentVO aptVO = joinSvc.formToApartment(vo);
+		int result = joinSvc.updateApartment(aptVO);
+		
+		if(result == 1) {
+			
+			return "join/joinModify.join";	
+		}else {
+			rttr.addFlashAttribute("msg", "회원정보 수정에 실패하였습니다. 다시 시도해 주십시오.");
+			
+			return "redirect:join/joinDetail.join"; 
+		}
 	}
 }

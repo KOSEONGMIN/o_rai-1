@@ -26,8 +26,8 @@
 	</select>
 	
 	<insert id="insertApartment">
-	insert into apt_table (apt_id, apt_password, apt_phone, apt_name, address, latitude, longitude, fee, open_time, close_time, bookable_count, total_count) values
-	(#{apt_id}, #{apt_password}, #{apt_phone}, #{apt_name}, #{address}, #{latitude}, #{longitude}, #{fee}, #{open_time}, #{close_time}, #{bookable_count}, #{total_count})
+	insert into apt_table (apt_id, apt_password, apt_phone, apt_name, address, latitude, longitude, fee, open_time, close_time, bookable_count, total_count, postcode) values
+	(#{apt_id}, #{apt_password}, #{apt_phone}, #{apt_name}, #{address}, #{latitude}, #{longitude}, #{fee}, #{open_time}, #{close_time}, #{bookable_count}, #{total_count}, #{postcode})
 	</insert>
 	
 	<select id="loginApartment" resultType="com.o_rai.domain.ApartmentVO">
@@ -140,5 +140,18 @@
 		UPDATE reservation_table
    		   SET is_reported = 'Y'
  		 WHERE BOOK_INDEX = #{bookIndex}
+	</update>
+	
+	<update id="updateApartment">
+		UPDATE apt_table
+		   SET apt_phone,
+		   	   address, 
+		   	   apt_name, 
+		   	   fee, 
+		   	   open_time, 
+		   	   close_time, 
+		   	   using_count, 
+		   	   total_count
+		WHERE apt_index = #{apt_index}
 	</update>
 </mapper>
