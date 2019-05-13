@@ -115,11 +115,15 @@ public class JoinController {
 	}
 	
 	@RequestMapping(value = "/joinModify", method=RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public String joinModify(@ModelAttribute FormVO vo, RedirectAttributes rttr) {
-		System.out.println(vo.getFirstPhoneNum());
+	public String joinModify(HttpServletRequest request, @ModelAttribute FormVO vo, RedirectAttributes rttr) {
+		SessionVO session = (SessionVO) request.getSession().getAttribute("sessionVO");
 		
 		ApartmentVO aptVO = joinSvc.formToApartment(vo);
+		aptVO.setApt_index(session.getApt_index());
+		
 		int result = joinSvc.updateApartment(aptVO);
+		
+		System.out.println(result);
 		
 		if(result == 1) {
 			
@@ -127,7 +131,7 @@ public class JoinController {
 		}else {
 			rttr.addFlashAttribute("msg", "회원정보 수정에 실패하였습니다. 다시 시도해 주십시오.");
 			
-			return "redirect:join/joinDetail.join"; 
+			return "redirect:main/main"; 
 		}
 	}
 }

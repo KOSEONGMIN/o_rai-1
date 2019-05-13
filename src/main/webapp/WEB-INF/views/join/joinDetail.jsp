@@ -304,8 +304,8 @@
 	                <button type="button" class="ui-btn-yellow-lg" onclick="detailObj.modifyComplete()">회원정보 수정</button>
 	                <button type="button" class="ui-btn-black-lg"  onclick="location.href ='<c:url value="/" />'">메인화면으로</button>
 	            </div>
-	            <input type="hidden" id="d_longitude" name="longitude" >
-	            <input type="hidden" id="d_latitude"  name="latitude" >
+	            <input type="hidden" id="d_longitude" name="longitude" value="<c:out value="${apartmentVO.longitude}"/>">
+	            <input type="hidden" id="d_latitude"  name="latitude" value="<c:out value="${apartmentVO.latitude}"/>">
 	        </div>
 	        <!--// contents -->
         </form>

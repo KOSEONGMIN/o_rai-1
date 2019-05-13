@@ -144,14 +144,14 @@
 	
 	<update id="updateApartment">
 		UPDATE apt_table
-		   SET apt_phone,
-		   	   address, 
-		   	   apt_name, 
-		   	   fee, 
-		   	   open_time, 
-		   	   close_time, 
-		   	   using_count, 
-		   	   total_count
+		   SET apt_phone = #{apt_phone},
+		   	   address = #{address}, 
+		   	   apt_name = #{apt_name}, 
+		   	   fee = #{fee}, 
+		   	   open_time = #{open_time}, 
+		   	   close_time = #{close_time}, 
+		   	   using_count = #{using_count}, 
+		   	   total_count = #{total_count}
 		WHERE apt_index = #{apt_index}
 	</update>
 </mapper>
