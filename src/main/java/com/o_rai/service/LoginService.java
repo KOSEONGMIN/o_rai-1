@@ -29,7 +29,7 @@ public class LoginService {
 		
 		if (apartmentVOList.size() != 1) {
 			resultMap.put("result", "FAIL");
-			resultMap.put("msg", "ë¡œê·¸ì¸ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
+			resultMap.put("msg", "·Î±×ÀÎ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
 			
 			return resultMap;
 		}
@@ -47,7 +47,7 @@ public class LoginService {
 		request.getSession().setAttribute("sessionVO", sessionVO);
 		
 		resultMap.put("result", "SUCCESS");
-		resultMap.put("msg", "ë¡œê·¸ì¸ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.");
+		resultMap.put("msg", "·Î±×ÀÎ µÇ¾ú½À´Ï´Ù.");
 		
 		return resultMap;
 	}

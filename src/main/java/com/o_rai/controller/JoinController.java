@@ -89,7 +89,8 @@ public class JoinController {
 	// 상세정보
 	@RequestMapping(value = "/joinDetail")
 	public String joinDetail() throws Exception {
-
+		// TODO: 정보 가져와서 form 맞춰서 jsp로 뿌려주기
+		
 		return "join/joinDetail.join";
 	}
 }

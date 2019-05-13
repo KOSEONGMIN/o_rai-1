@@ -23,16 +23,13 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board")
 	public String boardInit(@ModelAttribute PagingVO vo, ModelMap model) {
-		System.out.println("#### controller : " + vo);
 		
 		List<Map<String, Object>> boardList = boardService.selectBoardList(vo);
 
 		model.addAttribute("boardList", boardList);
-		System.out.println("### boardList : " + boardList);
 		model.addAttribute("pagingVO", vo);
 		model.addAttribute("aptInform", boardService.selectAptInform());
 		
-		System.out.println("BoardController : " + vo);
 		
 		return "board/board";
 	}
@@ -54,7 +51,6 @@ public class BoardController {
 	@RequestMapping(value = "/addBlackList", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public String addBlackList(@RequestParam Map<String, Object> map) {
-		System.out.println(map);
 		return JsonUtil.HashMapToJson(boardService.addBlackList(map));
 	}
 }

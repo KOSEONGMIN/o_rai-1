@@ -33,11 +33,7 @@ public class BoardService {
 		PagingVO resultVO 
 				= apartmentDAO.selectPagingInfo(vo.getApt_index());
 		
-		System.out.println("#### BoardService : " + resultVO);
-		
 		vo.setPagingInfo(resultVO);
-		
-		System.out.println("#### BoardService : " + vo);
 		
 		return apartmentDAO.selectBoardList(vo);
 	}
@@ -58,8 +54,6 @@ public class BoardService {
 				resultMap.put("time", apartmentDAO.selectCurrentDate(map).get("leave_time"));
 			}
 		}
-		
-		System.out.println("resultMap : " + resultMap);
 		
 		return resultMap;
 	}
@@ -98,14 +92,14 @@ public class BoardService {
 		
 		if ("N".equals(blackListChkResult)) {
 			resultMap.put("result", "FAILDAY");
-			resultMap.put("msg", "예약 종료시간 이후 24시간이 지나 블랙리스트로 추가할 수 없습니다.");
+			resultMap.put("msg", "24시간 안에만 가능합니다.");
 			
 			return resultMap;
 		}
 		
 		if ("N".equals(isReportedPossible)) {
 			resultMap.put("result", "FAILALEADY");
-			resultMap.put("msg", "이미 블랙리스트로 추가하였습니다.");
+			resultMap.put("msg", "이미 신고되었습니다.");
 			
 			return resultMap;
 		}
@@ -115,7 +109,7 @@ public class BoardService {
 		apartmentDAO.addIsReported(map);
 		
 		resultMap.put("result", "SUCCESS");
-		resultMap.put("msg", "블랙리스트로 등록하였습니다.");
+		resultMap.put("msg", "신고되었습니다.");
 		
 		return resultMap;
 	}
