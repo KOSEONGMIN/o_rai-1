@@ -34,4 +34,111 @@
 	select * from apt_table where apt_id=#{email} and apt_password=#{pwd}
 	</select>
 	
+	<select id="selectPagingInfo" resultType="com.o_rai.domain.PagingVO">
+		SELECT COUNT(*) AS totCnt 
+	  		 , CEIL(COUNT(*) / 10) AS totPage 
+  		  FROM reservation_table
+ 		 WHERE apt_index = #{apt_index}  
+	</select>
+	
+	<select id="selectBoardList" resultType="map">
+		SELECT book_index
+			 , rt.user_index
+			 , ut.car_number
+			 , ut.car_type
+			 , ut.user_id
+			 , ut.user_name
+			 , ut.user_phone
+			 , ut.user_report_count
+			 , rt.is_used
+			 , rt.start_time
+			 , rt.finish_time
+			 , rt.enter_time
+			 , rt.leave_time
+			 , rt.is_used
+	  	  FROM   reservation_table rt 
+	    LEFT OUTER JOIN user_table ut 
+	    	ON rt.user_index = ut.user_index 
+	  	     , (SELECT @R_NO := 0) R
+	 	 WHERE (FLOOR(((@R_NO := @R_NO + 1) - 1) / #{rows}) + 1) = #{page}
+	 	   AND APT_INDEX = #{apt_index}				
+ 	    ORDER BY BOOK_INDEX DESC
+	</select>
+	
+	<update id="addCurrentDate">
+		UPDATE reservation_table
+		   SET
+		   <choose>
+		   		<when test="way.equals('enter')">
+		   			enter_time = NOW()
+		   			, is_used = 1
+		   		</when>
+		   		<otherwise>
+		   			leave_time = NOW()
+		   		</otherwise>
+		   </choose>
+		 WHERE book_index = #{bookIndex}  
+	</update>
+	
+	<select id="selectCurrentDate" resultType="map">
+		SELECT
+			<choose>
+		   		<when test="way.equals('enter')">
+		   			enter_time
+		   		</when>
+		   		<otherwise>
+		   			leave_time
+		   		</otherwise>
+		   </choose>
+		  FROM reservation_table
+		 WHERE book_index = #{bookIndex} 
+	</select>
+	
+	<select id="selectAptInform" resultType="map">
+		SELECT apt_index
+			 , apt_name
+			 , address
+		  FROM apt_table
+		 WHERE apt_index = #{_parameter} 	 
+	</select>
+	
+	<select id="selectUserInform" resultType="map">
+		SELECT user_index
+			 , user_name
+			 , user_phone
+			 , user_report_count
+			 , car_number
+			 , car_type
+		  FROM user_table
+		 WHERE user_index = #{userIndex} 	 
+	</select>
+	
+	<select id="selectBlackListPossibleChk" resultType="map">
+		<![CDATA[
+		SELECT CASE
+     	 		WHEN NOW() >= DATE_ADD(finish_time, INTERVAL 1 DAY)
+     	 		THEN 'N'
+		 		ELSE 'Y'
+		  		END AS is_blackList_possible
+		]]>  		
+		  	 , CASE
+     	 		WHEN is_reported = 'N'
+     	 		THEN 'Y'
+     	 		ELSE 'N'
+     	 		END AS is_reported_possible	
+  		  FROM  reservation_table
+		 WHERE  BOOK_INDEX = #{_parameter}
+	</select>
+	
+	<update id="addBlackList">
+		UPDATE user_table
+   		   SET user_report_count = user_report_count + 1
+ 		 WHERE user_index = #{userIndex} 
+	</update>
+	
+	<update id="addIsReported">
+		UPDATE reservation_table
+   		   SET is_reported = 'Y'
+ 		 WHERE BOOK_INDEX = #{bookIndex}
+	</update>
 </mapper>

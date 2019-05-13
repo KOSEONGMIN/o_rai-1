@@ -63,14 +63,180 @@
 <script>
 	
 	$(function() {
+		var aptTitle = "<c:out value='${aptInform.apt_name}' />" + " (" + 
+				"<c:out value='${aptInform.address}' />" + ")";
+		
+		$("#aptTitle").html(aptTitle);
+		
+		<c:forEach var="firstBoardList" items="${boardList}" >
+			<c:if test="${firstBoardList.enter_time ne null}" >
+				$(".enterBtn" + <c:out value='${firstBoardList.book_index}' />).attr("disabled", true);
+				$(".enterBtn" + <c:out value='${firstBoardList.book_index}' />).removeClass("btn-primary");
+				
+				var enterTime = "<c:out value='${firstBoardList.enter_time}' />";
+				
+				enterTime = enterTime.substring(0, enterTime.length - 2);
+				
+				$(".enterBtn" + <c:out value='${firstBoardList.book_index}' />).parent("td").next().html(enterTime);
+				$(".enterBtn" + <c:out value='${firstBoardList.book_index}' />).parent("td").next().next().next().html("사용중");
+			</c:if>
+			
+			<c:if test="${firstBoardList.leave_time ne null}">
+				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).attr("disabled", true);
+				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).removeClass("btn-danger");
+				
+				var leaveTime = "<c:out value='${firstBoardList.leave_time}' />";
+				
+				leaveTime = leaveTime.substring(0, leaveTime.length - 2);
+				
+				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).parent("td").next().next().html(leaveTime);
+				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).parent("td").next().next().next().html("사용완료");
+			</c:if>
+		</c:forEach>
+		
+		var currentPage  = "<c:out value= '${pagingVO.page}' />",
+			totalPage	 = "<c:out value= '${pagingVO.totPage}' />",
+			scaleEndPage = "<c:out value= '${pagingVO.scaleEndPage}' />",
+			prevPage     = "<c:out value= '${pagingVO.prevPage}' />";	
+
+		$(".pageCls" + currentPage).addClass("active");
+		
+		if (Number(prevPage) === 0) {
+			$("#previous").hide();
+		}
+		
+		if (Number(scaleEndPage) >= Number(totalPage)) {
+			$("#next").hide();
+		}
+		
+		$(".enterBtn").on("click", function(e) {
+			var $this = $(this);
+			
+			var param = $this.data("options");
+			
+			var that = $this;
+			
+			$.ajax({
+				
+				type : "POST",
+				url	 : "/addCurrentDate",
+				data : {"bookIndex" : param, "way" : "enter"},
+				
+				success : function(data) {
+					
+					if (data.result === "SUCCESS") {
+					
+						that.attr("disabled", true);
+						that.removeClass("btn-primary");
+
+						/* that.parent("td").next().html(enterTime);
+						
+						that.parent("td").next().next().next().html("사용중"); */
+						
+						location.reload();
+					}
+						
+				}
+			})
+			
+		})
+		
+		$(".leaveBtn").on("click", function(e) {
+			var $this = $(this);
+			
+			if ($this.prev().attr("disabled") !== "disabled") {
+				alert("입차 버튼을 먼저 누르세요!");
+				
+				return;
+			}
+			
+			var param = $this.data("options");
+			
+			var that = $this;
+			
+			$.ajax({
+				
+				type : "POST",
+				url	 : "/addCurrentDate",
+				data : {"bookIndex" : param, "way" : "leave"},
+				
+				success : function(data) {
+
+					that.attr("disabled", true);
+					that.removeClass("btn-danger");
+					
+					location.reload();
+				}
+			})
+		})
+		
 		$(".userDetail").on("click", function(e) {
 			// a 태그 이벤트 제거
 			e.preventDefault();
 			
-			console.log($(this));
+			var $this = $(this);
+			
+			console.log("#detail : ", $this);
+			
+			var that = $this;
+			
+			$.ajax({
+				url	: "/selectUserInform",
+				type : "post",
+				data : {"userIndex" : $(this).data("options")},
+				async: false,
+				
+				success	: function(data) {
+					
+					$(".userName").html("사용자명 : " + data.user_name);
+					$(".userPhone").html("전화번호 : " + data.user_phone);
+					$(".userCarNum").html("차번호 : " + data.car_number);
+					$(".userCarType").html("차종 : " + data.car_type);
+				}
+				
+			})
 			
 			$("#myModal").modal();
+			
 		})
+		
+		$(".blackListBtn").on("click", function(e) {
+			e.preventDefault();
+			
+			var $this = $(this);
+			
+			console.log($(this));
+			
+			var param = {
+					
+				"userIndex" : $this.data("options"),
+				
+				"bookIndex" : $this.data("bookidx")
+			}
+			
+			console.log(param);
+			
+			var that = $this;
+			
+			$.ajax({
+				
+				type : "POST",
+				url	 : "/addBlackList",
+				data : param,
+				
+				success : function (data) {
+					if (data.result === "SUCCESS")
+						alert(data.msg);
+					else if (data.result === "FAILDAY")
+						alert(data.msg);
+					else if (data.result === "FAILALEADY")
+						alert(data.msg);
+					
+				}
+			})
+			
+		})
+		
 	})
 	
 
@@ -90,17 +256,17 @@
          </div>
          <div class="modal-body">
          	<div>
-         		<h3>사용자명 : </h3>
+         		<h3 class="userName">사용자명 : </h3>
          	</div>
          	<div>
-         		<h3>전화번호: </h3>
+         		<h3 class="userPhone">전화번호: </h3>
          	</div>
          	<div>
-         		<h3>차 번호 : </h3>
+         		<h3 class="userCarNum">차 번호 : </h3>
          	</div>
-         	<div>
-         		<h3>차종 : </h3><button class="btn-danger">블랙리스트 등록</button>
-         	</div>
+<!--          	<div> -->
+<!--          		<h3 class="userCarType">차종 : </h3><button id="blackListBtn" class="btn-danger blackListBtn">블랙리스트 등록</button> -->
+<!--          	</div> -->
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -161,7 +327,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mt-40">
-            <h2 class="title">주차장 예약 현황</h2>
+            <h2 id="aptTitle" class="title">주차장 예약 현황</h2>
             <hr>
             <p>주차장 예약자 명단 입니다.</p>
               <div data-example-id="hoverable-table" class="bs-example"> 
@@ -173,110 +339,30 @@
               				<th>차량번호</th> 
               				<th>사용시간</th>
               				<th>입/출차 여부</th>
-              				<th>사용여부</th>  
+              				<th>입차시간</th>
+              				<th>출차시간</th>
+              				<th>사용여부</th>
+              				<th>블랙리스트</th>  
               			</tr> 
               		</thead> 
-              		<tbody> 
-              			<tr> 
-              				<th scope="row">10</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Mark</a></td> 
-              				<td>Otto</td> 
-              				<td>12:00 ~ 13:00</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>대기중</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">9</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Jacob</a></td> 
-              				<td>Thornton</td> 
-              				<td>10:00 ~ 11:00</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>대기중</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">8</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>09:00 ~ 10:30</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>대기중</td> 
-              			</tr>
-              			<tr> 
-              				<th scope="row">7</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>09:00 ~ 10:30</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>대기중</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">6</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>09:00 ~ 10:30</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>대기중</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">5</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>09:00 ~ 10:30</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>사용중</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">4</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>10:00 ~ 10:30</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>사용중</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">3</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>09:45 ~ 10:30</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>사용중</td> 
-              			</tr>
-              			<tr> 
-              				<th scope="row">2</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>09:30 ~ 10:00</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>사용중</td> 
-              			</tr> 
-              			<tr> 
-              				<th scope="row">1</th> 
-              				<td><a style="cursor:pointer" class="userDetail">Larry</a></td> 
-              				<td>the Bird</td> 
-              				<td>09:00 ~ 10:30</td>
-              				<td><button class="btn-primary">입차</button>
-              					<button class="btn-danger">출차</button>
-              				</td>
-              				<td>사용완료</td> 
-              			</tr> 
+              		<tbody>
+              			<c:forEach items="${boardList}" var="boardList" >
+              				<tr> 
+	              				<th scope="row"><c:out value="${boardList.book_index}" /></th> 
+	              				<td><a style="cursor:pointer" data-options="<c:out value="${boardList.user_index}" />" class="userDetail user<c:out value="${boardList.user_index}" />"><c:out value="${boardList.user_id}" /></a></td> 
+	              				<td><c:out value="${boardList.car_number}" /></td> 
+	              				<td><fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${boardList.start_time}" />
+	              					~ <fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${boardList.finish_time}" />
+	              				</td>
+	              				<td><button class="btn-primary enterBtn enterBtn<c:out value='${boardList.book_index}' />" data-options="<c:out value='${boardList.book_index}' />">입차</button>
+	              					<button class="btn-danger leaveBtn leaveBtn<c:out value='${boardList.book_index}' />" data-options="<c:out value='${boardList.book_index}' />">출차</button>
+	              				</td>
+	              				<td>입차 이전</td>
+	              				<td>출차 이전</td>
+              					<td>대기중</td>
+              					<td><button class="btn-warning blackListBtn" data-bookIdx=<c:out value="${boardList.book_index}" /> data-option=<c:out value="${boardList.user_index}" />>블랙리스트 등록</button></td>
+              				</tr> 
+              			</c:forEach> 
               		</tbody> 
               	</table> 
               </div>
@@ -285,17 +371,13 @@
         </div>
 		<nav>
 		  <ul class="pagination pull-right">
-		    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-		    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-		    <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
-		    <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
-		    <li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>
-		    <li class=""><a href="#">5 <span class="sr-only">(current)</span></a></li>
-		    <li class=""><a href="#">6 <span class="sr-only">(current)</span></a></li>
-		    <li class=""><a href="#">7 <span class="sr-only">(current)</span></a></li>
-		    <li class=""><a href="#">8 <span class="sr-only">(current)</span></a></li>
-		    <li class=""><a href="#">9 <span class="sr-only">(current)</span></a></li>
-		    <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+		    <li id="previous" class=""><a href="/board?page=<c:out value='${pagingVO.prevPage}' />" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+		    
+		    <c:forEach var="num" begin="${pagingVO.scaleStartPage}" end="${pagingVO.scaleEndPage}" >
+		    	<li class="pageCls<c:out value='${num}' />"><a href="/board?page=<c:out value='${num}' />"><c:out value="${num}" /><span class="sr-only">(current)</span></a></li>
+		    </c:forEach>
+		    
+		    <li id="next" class=""><a href="/board?page=<c:out value='${pagingVO.nextPage}' />" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 		  </ul>
 		</nav>
       </div>
