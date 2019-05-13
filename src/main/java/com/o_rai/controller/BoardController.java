@@ -30,7 +30,6 @@ public class BoardController {
 		model.addAttribute("pagingVO", vo);
 		model.addAttribute("aptInform", boardService.selectAptInform());
 		
-		
 		return "board/board";
 	}
 	

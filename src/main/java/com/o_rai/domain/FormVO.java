@@ -37,6 +37,8 @@ public class FormVO {
 	@NotEmpty
 	private double latitude;
 	
+	private String postcode;
+	
 	public String getFirstEmail() {
 		return firstEmail;
 	}
@@ -121,7 +123,12 @@ public class FormVO {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
-	
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
 	@Override
 	public String toString() {
 		return "FormVO [firstEmail=" + firstEmail + ", lastEmail=" + lastEmail + ", pwd=" + pwd + ", firstPhoneNum="
@@ -129,4 +136,5 @@ public class FormVO {
 				+ buildingName + ", fee=" + fee + ", openTime=" + openTime + ", closeTime=" + closeTime
 				+ ", bookableCount=" + bookableCount + ", totalCount=" + totalCount + ", longitude=" + longitude + ", latitude=" + latitude + "]";
 	}
+	
 }

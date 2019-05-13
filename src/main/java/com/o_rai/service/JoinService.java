@@ -14,7 +14,7 @@ public class JoinService {
 	@Inject
 	private ApartmentDAO aptDao;
 	
-	public int formToApartment(FormVO vo){
+	public ApartmentVO formToApartment(FormVO vo){
 		
 		ApartmentVO aptVO = new ApartmentVO();
 		
@@ -26,6 +26,7 @@ public class JoinService {
 		aptVO.setFee(vo.getFee());
 		aptVO.setLongitude(vo.getLongitude());
 		aptVO.setLatitude(vo.getLatitude());
+		aptVO.setPostcode(vo.getPostcode());
 		
 		if (vo.getOpenTime() < vo.getCloseTime() && 
 				( vo.getOpenTime() >= 0 && vo.getOpenTime() <= 24) &&
@@ -62,10 +63,39 @@ public class JoinService {
 		
 		System.out.println(aptVO.toString());
 		
-		int result = aptDao.insertApartment(aptVO);
+		return aptVO;
+	}
+	
+	public int insertApartment(ApartmentVO vo) {
+		int result = aptDao.insertApartment(vo);
 		
 		return result;
 	}
 	
+	public ApartmentVO getSelectedApartment(ApartmentVO vo) {
+		
+		ApartmentVO resultAptVO = aptDao.getSelectedApartment(vo);
+		
+		return resultAptVO;
+	}
 	
+	// jsp form¿¡ ¸ÂÃç¼­ ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ FormVO ·Î ÆÄ½ÌÇØÁÜ
+	public FormVO apartmentToForm(ApartmentVO vo) {
+		
+		FormVO resultForm = new FormVO();
+		
+		resultForm.setFirstPhoneNum(vo.getApt_phone().split("-")[1]);
+		resultForm.setLastPhoneNum(vo.getApt_phone().split("-")[2]);
+		resultForm.setOpenTime(Integer.parseInt(vo.getOpen_time().split(":")[0]));
+		resultForm.setCloseTime(Integer.parseInt(vo.getClose_time().split(":")[0]));
+		
+		return resultForm;
+	}
+	
+	public int updateApartment(ApartmentVO vo) {
+		
+		int result = aptDao.updateApartment(vo);
+		
+		return result; 
+	}
 }

@@ -58,11 +58,12 @@
 	    		
 	    		// 정보 입력 완료
 	    		modifyComplete	: function() {
-
+					console.log("modifyComplete call");
+					
 	    			if (validChkCls.validChkCallFn()) {		
 	    				var url = "<c:url value='/joinModify'/>";
 	    		    	
-	    				var firstTimeLength  = $(".time").eq(0).val().length,
+	    				/* var firstTimeLength  = $(".time").eq(0).val().length,
 	    				    secondTimeLength = $(".time").eq(1).val().length
 						
 	    				if (firstTimeLength === 1) {
@@ -71,7 +72,9 @@
 	    				
 	    				if (secondTimeLength === 1) {
 	    					$(".time").eq(1).val("0" + $(".time").eq(1).val());
-	    				}
+	    				} */
+	    				
+	    				console.log("??????");
 	    				
 	    		    	$("#modifyFrm").attr("action", url);
 	    		    	$("#modifyFrm").submit();
@@ -239,7 +242,10 @@
 	                <div class="join-row email">
 	                    <div class="join-item">
 	                        <h3 class="item-tit txt-regular"><span>이메일</span><span class="point">*</span></h3>
-	                        <input type="text" id="d_email" class="ui-ipt email" name="email" disabled>	                        
+	                        <input type="text" id="d_email" class="ui-ipt email" 
+	                        name="email"
+	                        value="<c:out value="${apartmentVO.apt_id}" />"
+	                        disabled>
 	                    </div>
 	                </div>
 	                <div class="join-row phone ipt-bar">
@@ -249,9 +255,9 @@
 	                            <option value="">010</option>
 	                        </select>
 	                        <span class="bar"></span>
-	                        <input type="text" id="d_firstPhoneNum" class="ui-ipt ipt-phone num" name="firstPhoneNum" >
+	                        <input type="text" id="d_firstPhoneNum" class="ui-ipt ipt-phone num" name="firstPhoneNum" value="<c:out value="${formVO.firstPhoneNum}"/>" onfocus="this.value=''">
 	                        <span class="bar"></span>
-	                        <input type="text" id="d_lastPhoneNum" class="ui-ipt ipt-phone num" name="lastPhoneNum" >
+	                        <input type="text" id="d_lastPhoneNum" class="ui-ipt ipt-phone num" name="lastPhoneNum" value="<c:out value="${formVO.lastPhoneNum}"/>" onfocus="this.value=''">
 	                        <p class="sub-info-txt">
 	                        <span class="txt-warning"></span>
 	                    </div>
@@ -259,27 +265,27 @@
 	                <div class="join-row">
 	                    <div class="join-item">
 	                        <h3 class="item-tit txt-regular"><span>주소</span><span class="point">*</span></h3>
-	                        <input type="text" id="d_postcode" class="ui-ipt" name="postcode" disabled > <button type="button" onclick="detailObj.searchAddrFn()" data-popup="#pop-01" class="ui-btn-gray-md pop-call">우편번호검색</button>
-	                        <div class="sub-addr-wrap mgt-10"><input type="text" id="d_roadAddress" class="ui-ipt" name="roadAddress" ></div>
+	                        <input type="text" id="d_postcode" class="ui-ipt" name="postcode" disabled value="<c:out value="${apartmentVO.postcode}"/>" > <button type="button" onclick="detailObj.searchAddrFn()" data-popup="#pop-01" class="ui-btn-gray-md pop-call">우편번호검색</button>
+	                        <div class="sub-addr-wrap mgt-10"><input type="text" id="d_roadAddress" class="ui-ipt" name="roadAddress" value="<c:out value="${apartmentVO.address}"/>" onfocus="this.value=''"></div>
 	                	</div>
 	                </div>	
 	                <div class="join-row">
 	                    <div class="join-item">
 	                        <h3 class="item-tit txt-regular"><span>아파트 이름</span><span class="point">*</span></h3>
-	                        <input type="text" id="d_buildingName" class="ui-ipt" name="buildingName" >
+	                        <input type="text" id="d_buildingName" class="ui-ipt" name="buildingName" value="<c:out value="${apartmentVO.apt_name}"/>" onfocus="this.value=''">
 	                    </div>
 	                </div>
 	                <div class="join-row phone ipt-bar">
 	                    <div class="join-item">
 	                        <h3 class="item-tit txt-regular"><span>단위 요금</span><span class="point">*</span></h3>
-	                        <input type="text" id="d_fee" class="ui-ipt ipt-phone time" name="fee" maxlength="10"> 원 (15분당 요금)
+	                        <input type="text" id="d_fee" class="ui-ipt ipt-phone time" name="fee" maxlength="10" value="<c:out value="${apartmentVO.fee}"/>" onfocus="this.value=''"> 원 (15분당 요금)
 	                        <span class="txt-warning"></span>
 	                    </div>        
 	                </div>
 	                <div class="join-row ipt-bar">
 	                    <div class="join-item">
 	                        <h3 class="item-tit txt-regular"><span>이용가능 시간</span><span class="point">*</span></h3>
-	                        <input type="text" id="d_openTime" class="ui-ipt limitTime time" name="openTime" maxlength="2"> 시<span> ~ </span><input type="text" id="d_closeTime" class="ui-ipt limitTime time" name="closeTime" maxlength="2">시
+	                        <input type="text" id="d_openTime" class="ui-ipt limitTime time" name="openTime" maxlength="2" value="<c:out value="${formVO.openTime}"/>" onfocus="this.value=''"> 시<span> ~ </span><input type="text" id="d_closeTime" class="ui-ipt limitTime time" name="closeTime" maxlength="2" value="<c:out value="${formVO.closeTime}"/>" onfocus="this.value=''">시
 	                        <span class="txt-warning"></span>
 	                        <br>
 	                        <p class="sub-info-txt"><span class="ui-bullet"></span> 0시부터 24시까지 입력가능 (숫자만 입력 가능)</p>
@@ -288,7 +294,7 @@
 	                <div class="join-row phone ipt-bar">
 	                    <div class="join-item">
 	                        <h3 class="item-tit txt-regular"><span>예약 가능 / 총 주차장 수</span><span class="point">*</span></h3>
-	                        <input type="text" id="d_bookableCount" class="ui-ipt ipt-phone num" name="bookableCount" maxlength="6"><span> / </span><input type="text" id="totalCount" class="ui-ipt ipt-phone num" name="totalCount" maxlength="6">
+	                        <input type="text" id="d_bookableCount" class="ui-ipt ipt-phone num" name="bookableCount" maxlength="6" value="<c:out value="${apartmentVO.bookable_count}"/>" onfocus="this.value=''"><span> / </span><input type="text" id="totalCount" class="ui-ipt ipt-phone num" name="totalCount" maxlength="6" value="<c:out value="${apartmentVO.total_count}"/>" onfocus="this.value=''">
 	                        <span class="txt-warning"></span>
 	                    </div>
 	                </div> 
