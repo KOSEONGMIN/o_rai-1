@@ -59,7 +59,7 @@ public class JoinController {
 		if (result == 1) {
 			return "join/joinComplete.join";
 		}else {
-			rttr.addFlashAttribute("msg", "È¸¿ø°¡ÀÔ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.");
+			rttr.addFlashAttribute("msg", "È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 			
 			return "redirect:join/joinRegist.join";
 		}
@@ -90,10 +90,10 @@ public class JoinController {
 		}
 	}
 	
-	// »ó¼¼Á¤º¸
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/joinDetail")
 	public String joinDetail(HttpServletRequest request, ModelMap model) throws Exception {
-		// TODO: Á¤º¸ °¡Á®¿Í¼­ form ¸ÂÃç¼­ jsp·Î »Ñ·ÁÁÖ±â
+		// TODO: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ form ï¿½ï¿½ï¿½ç¼­ jspï¿½ï¿½ ï¿½Ñ·ï¿½ï¿½Ö±ï¿½
 		
 		ApartmentVO aptVO = new ApartmentVO();
 		SessionVO session = new SessionVO();
@@ -127,11 +127,11 @@ public class JoinController {
 		
 		if(result == 1) {
 			
-			return "join/joinModify.join";	
+			return "redirect:/";	
 		}else {
-			rttr.addFlashAttribute("msg", "È¸¿øÁ¤º¸ ¼öÁ¤¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ½Ê½Ã¿À.");
+			rttr.addFlashAttribute("msg", "È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö½Ê½Ã¿ï¿½.");
 			
-			return "redirect:main/main"; 
+			return "redirect:/"; 
 		}
 	}
 }

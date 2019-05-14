@@ -275,7 +275,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap; font-weight:700;">최선의 서비스를 제공합니다
+                  style="z-index: 5; white-space: nowrap; font-weight:700;">
                 </div>
                 <!-- LAYER NR. 3 -->
                 <div class="tp-caption tp-resizeme rs-parallaxlevel-0 text-white text-uppercase font-roboto-slab font-weight-700" 
