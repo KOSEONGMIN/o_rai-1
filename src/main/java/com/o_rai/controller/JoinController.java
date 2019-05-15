@@ -108,6 +108,8 @@ public class JoinController {
 		
 		System.out.println(resultFormVO.toString());
 		
+		System.out.println("#### joinDetail : " + resultAptVO);
+		
 		model.addAttribute("apartmentVO", resultAptVO);
 		model.addAttribute("formVO", resultFormVO);
 		

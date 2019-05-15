@@ -51,6 +51,7 @@
 <script src="/resources/js/bootstrap.min.js"></script>
 <!-- JS | jquery plugin collection for this theme -->
 <script src="/resources/js/jquery-plugin-collection.js"></script>
+<script src="<c:url value="/resources/js/jquery.fileDownload.js"/>"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- danger: Respond.js doesn't work if you view the page via file:// -->
@@ -237,6 +238,28 @@
 			
 		})
 		
+		
+		$("#btn-excel").on("click", function () {
+	        var $preparingFileModal = $("#preparing-file-modal");
+	        
+	        $preparingFileModal.dialog({ modal: true });
+	        
+	        $("#progressbar").progressbar({value: false});
+	        
+	        $.fileDownload("/downloadExcel", {
+	            successCallback: function (url) {
+	                $preparingFileModal.dialog('close');
+	            },
+	            failCallback: function (responseHtml, url) {
+	                $preparingFileModal.dialog('close');
+	                $("#error-modal").dialog({ modal: true });
+	            }
+	        });
+	        
+	        // 버튼의 원래 클릭 이벤트를 중지 시키기 위해 필요합니다.
+	        return false;
+    	});
+		
 	})
 	
 
@@ -330,6 +353,17 @@
             <h2 id="aptTitle" class="title">주차장 예약 현황</h2>
             <hr>
             <p>주차장 예약자 명단 입니다.</p>
+       		<button id="btn-excel">예약내역 다운로드</button> <!-- 파일 생성중 보여질 진행막대를 포함하고 있는 다이얼로그 입니다. --> 
+       		<div title="Data Download" id="preparing-file-modal" style="display: none;"> 
+       			<div id="progressbar" style="width: 100%; height: 22px; margin-top: 20px;"></div> 
+       		</div> 
+       		
+       		<!-- 에러발생시 보여질 메세지 다이얼로그 입니다. --> 
+       		<div title="Error" id="error-modal" style="display: none;"> 
+       			<p>생성실패.</p> 
+       		</div>
+			<br/>
+			<br/>
               <div data-example-id="hoverable-table" class="bs-example"> 
               	<table class="table table-hover table-bordered"> 
               		<thead> 
