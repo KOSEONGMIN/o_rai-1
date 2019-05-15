@@ -3,9 +3,8 @@ package com.o_rai.model;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.o_rai.domain.ApartmentVO;
@@ -14,7 +13,7 @@ import com.o_rai.domain.PagingVO;
 @Repository
 public class ApartmentDAOImpl implements ApartmentDAO {
 
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
 	
 	private static final String namespace = "com.o_rai.mapper.ApartmentMapper";

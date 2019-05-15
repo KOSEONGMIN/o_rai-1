@@ -44,7 +44,7 @@ public class ApartmentVO {
 	@DecimalMax("125.0000") // West
 	@DecimalMin("131.5222") // East
     private double longitude;
-    
+	
     // Not empty
 	@NotEmpty
     private int fee;

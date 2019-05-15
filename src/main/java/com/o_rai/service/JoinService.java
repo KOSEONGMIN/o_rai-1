@@ -79,7 +79,7 @@ public class JoinService {
 		return resultAptVO;
 	}
 	
-	// jsp form¿¡ ¸ÂÃç¼­ ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ FormVO ·Î ÆÄ½ÌÇØÁÜ
+	// jsp formï¿½ï¿½ ï¿½ï¿½ï¿½ç¼­ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ FormVO ï¿½ï¿½ ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public FormVO apartmentToForm(ApartmentVO vo) {
 		
 		FormVO resultForm = new FormVO();

@@ -103,8 +103,6 @@ hs_err_pid*
 *.css
 *.htm
 *.html
-*.js
-*.jsp
 *.php
 *.rss
 *.xhtml

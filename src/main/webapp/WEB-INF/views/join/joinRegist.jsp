@@ -96,7 +96,7 @@
     	                    
     	                    roadAddress = data.roadAddress;
     	                    
-    	                    $("input[name='postcode']").attr("value", data.postcode);
+    	                    $("input[name='pcode']").attr("value", data.postcode);
     	                    $("input[name='roadAddress']").attr("value", data.roadAddress);
     	                    $("input[name='buildingName']").attr("value", data.buildingName);
     	                    
@@ -141,16 +141,9 @@
     			if (validChkCls.validChkCallFn()) {		
     				var url = "<c:url value='/joinComplete'/>";
     		    	
-    				/* var firstTimeLength = $(".time").eq(0).val().length,
-    				    secondTimeLength = $(".time").eq(1).val().length
-					
-    				if (firstTimeLength === 1) {
-    					$(".time").eq(0).val("0" + $(".time").eq(0).val());
-    				}
+    				var postcode = $("#pcode").val();
     				
-    				if (secondTimeLength === 1) {
-    					$(".time").eq(1).val("0" + $(".time").eq(1).val());
-    				} */
+    				$("input[name='postcode']").val(postcode);
     				
     		    	$("#registCompleteFrm").attr("action", url);
     		    	$("#registCompleteFrm").submit();
@@ -250,8 +243,7 @@
 	    		bookableCount	= $("#bookableCount").val(),
 		    	totalCount		= $("#totalCount").val(),
 		    	openTime		= $("#openTime").val(),
-		    	closeTime		= $("#closeTime").val(),
-		    	postcode		= $("#postcode").val();
+		    	closeTime		= $("#closeTime").val();
 	    	
 			// 이메일 체크
 			if (!this.emailChkFn(email)) {
@@ -469,7 +461,7 @@
 	                <div class="join-row">
 	                    <div class="join-item">
 	                        <h3 class="item-tit txt-regular"><span>주소</span><span class="point">*</span></h3>
-	                        <input type="text" id="postcode" class="ui-ipt" name="postcode" disabled > <button type="button" onclick="registObj.searchAddrFn()" data-popup="#pop-01" class="ui-btn-gray-md pop-call">우편번호검색</button>
+	                        <input type="text" id="pcode" class="ui-ipt" name="pcode" disabled > <button type="button" onclick="registObj.searchAddrFn()" data-popup="#pop-01" class="ui-btn-gray-md pop-call">우편번호검색</button>
 	                        <div class="sub-addr-wrap mgt-10"><input type="text" id="roadAddress" class="ui-ipt" name="roadAddress" ></div>
 	                	</div>
 	                </div>	
@@ -516,6 +508,7 @@
 	            </div>
 	            <input type="hidden" id="longitude" name="longitude" >
 	            <input type="hidden" id="latitude" name="latitude" >
+	            <input type="hidden" id="postcode" name="postcode" >
 	        </div>
 	        <!--// contents -->
         </form>

@@ -45,6 +45,7 @@
       <interceptor>
          <mapping path="/joinDetail"/>
          <mapping path="/board"/>
+         <mapping path="/joinModify"/>
          <beans:bean id="intercepter" class="com.o_rai.cmmn.Interceptor" />
       </interceptor>
    </interceptors>

@@ -114,7 +114,7 @@ public class JoinController {
 		return "join/joinDetail.join";
 	}
 	
-	@RequestMapping(value = "/joinModify", method=RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/joinModify")
 	public String joinModify(HttpServletRequest request, @ModelAttribute FormVO vo, RedirectAttributes rttr) {
 		SessionVO session = (SessionVO) request.getSession().getAttribute("sessionVO");
 		
@@ -125,13 +125,13 @@ public class JoinController {
 		
 		System.out.println(result);
 		
-		if(result == 1) {
+		if (result == 1) {
 			
-			return "redirect:/";	
-		}else {
+			return "join/joinModify.join";	
+		} else {
 			rttr.addFlashAttribute("msg", "ȸ������ ������ �����Ͽ����ϴ�. �ٽ� �õ��� �ֽʽÿ�.");
 			
-			return "redirect:/"; 
+			return "redirect:/joinDetail"; 
 		}
 	}
 }
