@@ -37,9 +37,8 @@ public class ExcelService {
 
 	    SqlSession sqlSession = sqlSessionFactory.openSession();
 
-	    // 메모리에 100개의 행을 유지합니다. 행의 수가 넘으면 디스크에 적습니다.
 	    SXSSFWorkbook wb = new SXSSFWorkbook(100);
-	    final Sheet sheet = wb.createSheet("예약내역");
+	    final Sheet sheet = wb.createSheet("�삁�빟�궡�뿭");
 
 	    CellStyle headStyle = wb.createCellStyle();
 	    
@@ -74,60 +73,60 @@ public class ExcelService {
 	    
 	    headCell = headerRow.createCell(0);	
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("번호");
+	    headCell.setCellValue("踰덊샇");
 
 	    headCell = headerRow.createCell(1);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("아이디");
+	    headCell.setCellValue("�븘�씠�뵒");
 
 	    headCell = headerRow.createCell(2);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("사용자명");
+	    headCell.setCellValue("�궗�슜�옄紐�");
 	    
 	    headCell = headerRow.createCell(3);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("사용자 휴대전화");
+	    headCell.setCellValue("�궗�슜�옄 �쑕���쟾�솕");
 	    
 	    
 	    headCell = headerRow.createCell(4);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("차량번호");
+	    headCell.setCellValue("李⑤웾踰덊샇");
 	    
 	    headCell = headerRow.createCell(5);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("차량종류");
+	    headCell.setCellValue("李⑤웾醫낅쪟");
 	    
 	    headCell = headerRow.createCell(6);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("예약 시작시간");
+	    headCell.setCellValue("�삁�빟 �떆�옉�떆媛�");
 	    
 	    headCell = headerRow.createCell(7);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("예약 종료시간");
+	    headCell.setCellValue("�삁�빟 醫낅즺�떆媛�");
 	    
 	    headCell = headerRow.createCell(8);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("입차시간");
+	    headCell.setCellValue("�엯李⑥떆媛�");
 	    
 	    headCell = headerRow.createCell(9);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("출차시간");
+	    headCell.setCellValue("異쒖감�떆媛�");
 	    
 	    headCell = headerRow.createCell(10);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("요금");
+	    headCell.setCellValue("�슂湲�");
 	    
 	    headCell = headerRow.createCell(11);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("회원 등급");
+	    headCell.setCellValue("�쉶�썝 �벑湲�");
 	    
 	    headCell = headerRow.createCell(12);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("신고여부");
+	    headCell.setCellValue("�떊怨좎뿬遺�");
 	    
 	    headCell = headerRow.createCell(13);
 	    headCell.setCellStyle(headStyle);
-	    headCell.setCellValue("신고횟수");
+	    headCell.setCellValue("�떊怨좏슏�닔");
 	    
 	    for (ExcelVO vo : reservatationList) {
 	    	Row row = sheet.createRow(rowNum++);
