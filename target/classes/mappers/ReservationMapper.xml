@@ -73,9 +73,12 @@
 			 , ut.car_type 
 	      FROM reservation_table rt
 		LEFT OUTER JOIN user_table ut 
-			ON rt.user_index = ut.user_index 
+			ON rt.user_index = ut.user_index
+		<![CDATA[ 
 	     WHERE apt_index = #{apt_index}
-	    ORDER BY book_index DESC 
+	       AND rt.start_time > DATE_SUB(NOW(),INTERVAL 3 MONTH)
+	    ORDER BY book_index DESC
+	    ]]> 
 	</select>
 	
 </mapper>

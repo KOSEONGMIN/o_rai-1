@@ -51,6 +51,8 @@ public class ExcelService {
 	    headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 	    headStyle.setAlignment(HorizontalAlignment.CENTER);
 	    
+	    sheet.setColumnWidth(1, 5000);
+	    sheet.setColumnWidth(2, 5000);
 	    sheet.setColumnWidth(3, 5000);
 	    sheet.setColumnWidth(4, 5000);
 	    sheet.setColumnWidth(5, 4000);

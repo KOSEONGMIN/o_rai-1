@@ -14,7 +14,7 @@
 <meta name="author" content="ThemeMascot" />
 
 <!-- Page Title -->
-<title>Consulting Finance Corporate Business - ConsultingPro</title>
+<title>오라이</title>
 
 <!-- Favicon and Touch Icons -->
 <link href="/resources/images/favicon.png" rel="shortcut icon" type="image/png">
@@ -333,9 +333,9 @@
         <div class="container">
           <nav id="menuzord-left" class="menuzord default">
             <ul class="menuzord-menu">
-              <li class=""><a href=<c:out value="/" />>Home</a></li>
-              <li class=""><a href=<c:out value="/joinDetail" />>Detail</a></li>
-              <li class=""><a href=<c:out value="/logoutProc" />>Logout</a></li>
+              <li class=""><a href=<c:out value="/" />>홈으로</a></li>
+              <li class=""><a href=<c:out value="/joinDetail" />>세부정보 조회/수정</a></li>
+              <li class=""><a href=<c:out value="/logoutProc" />>로그아웃</a></li>
             </ul>
           </nav>
         </div>

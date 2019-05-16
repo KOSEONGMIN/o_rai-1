@@ -14,7 +14,7 @@
 <meta name="author" content="ThemeMascot" />
 
 <!-- Page Title -->
-<title>Consulting Finance Corporate Business - ConsultingPro</title>
+<title>오라이</title>
 
 <!-- Favicon and Touch Icons -->
 <link href="/resources/images/favicon.png" rel="shortcut icon" type="image/png">

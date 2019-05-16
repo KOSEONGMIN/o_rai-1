@@ -14,7 +14,7 @@
 <meta name="author" content="ThemeMascot" />
 
 <!-- Page Title -->
-<title>Consulting Finance Corporate Business - ConsultingPro</title>
+<title>오라이</title>
 
 <!-- Favicon and Touch Icons -->
 <link href="/resources/images/favicon.png" rel="shortcut icon" type="image/png">
@@ -69,7 +69,16 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<style>
+
+  table {
+    width: 100%;
+  }
+</style>
+
 </head>
+
+
 <body class="">
 <div id="wrapper" class="clearfix">
 <!--   <!-- preloader --> 
@@ -135,7 +144,7 @@
         <div class="container">
           <nav id="menuzord" class="menuzord default theme-colored menuzord-responsive">
             <ul class="menuzord-menu">
-              <li class="active"><a href="#home">Home</a>
+              <li class="active"><a href="/">홈</a>
                 <ul class="dropdown">
                   <li><a href="#">Multipage Layouts</a>
                     <ul class="dropdown">
@@ -208,9 +217,9 @@
                 </ul>
               </li>
 
-              <li><a href=<c:out value="/board" />>Board</a>             
+              <li><a href=<c:out value="/board" />>예약내역 확인하기</a>             
               </li>
-              <li><a href=<c:out value="/joinDetail" />>Detail</a>
+              <li><a href=<c:out value="/joinDetail" />>세부정보 조회/수정</a>
               </li>
             </ul>
             <div class="pull-right sm-pull-none mb-sm-15">
@@ -387,7 +396,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap; font-weight:700;">최선의 서비스를 제공합니다
+                  style="z-index: 5; white-space: nowrap; font-weight:700;">
                 </div>
                 <!-- LAYER NR. 3 -->
                 <div class="tp-caption tp-resizeme rs-parallaxlevel-0 text-white text-uppercase font-roboto-slab font-weight-700" 
@@ -499,7 +508,7 @@
                   data-splitin="none" 
                   data-splitout="none" 
                   data-responsive_offset="on" 
-                  style="z-index: 5; white-space: nowrap; font-weight:700;">최선의 서비스를 제공합니다
+                  style="z-index: 5; white-space: nowrap; font-weight:700;">
                 </div>
                 <!-- LAYER NR. 3 -->
                 <div class="tp-caption tp-resizeme rs-parallaxlevel-0 text-white text-uppercase font-roboto-slab font-weight-700" 
@@ -700,7 +709,7 @@
                 <div class="thumb">
                   <img src="<c:url value='/resources/img/register2.png' />" alt="" class="img-fullwidth">
                   <div class="title">
-                    <a href="#"><h3> 주차장 대여<i class="fa fa-caret-right pull-right mt-5"></i></h3></a>
+                    <h3> 주차장 대여</h3>
                     <p>사용자들에게 대여해 줄 주차장을 등록합니다</p>
                     <a href="#" class="text-theme-colored2">Read More <span class="fa fa-angle-right"></span></a>
                   </div>
@@ -712,7 +721,7 @@
                 <div class="thumb">
                   <img src="<c:url value='/resources/img/service.jpg' />" alt="" class="img-fullwidth">
                   <div class="title">
-                    <a href="#"><h3> 서비스 제공<i class="fa fa-caret-right pull-right mt-5"></i></h3></a>
+                    <h3> 서비스 제공</h3>
                     <p>등록된 주차장을 대여해 주는 서비스를 제공합니다</p>
                     <a href="#" class="text-theme-colored2">Read More <span class="fa fa-angle-right"></span></a>
                   </div>
@@ -724,7 +733,7 @@
                 <div class="thumb">
                   <img src="<c:url value='/resources/img/finance.jpg' />" alt="" class="img-fullwidth">
                   <div class="title">
-                    <a href="#"><h3> 수익 창출<i class="fa fa-caret-right pull-right mt-5"></i></h3></a>
+                    <h3> 수익 창출</h3>
                     <p>비어있는 주차장을 제공하여 수익을 창출할 수 있습니다</p>
                     <a href="#" class="text-theme-colored2">Read More <span class="fa fa-angle-right"></span></a>
                   </div>
