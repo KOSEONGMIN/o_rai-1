@@ -318,13 +318,6 @@
 					return false;			
 				}
 				
-				if (Number(openTime) >= Number(closeTime)) {
-					$(".txt-warning").eq(5).text("시작시간과 종료시간은 빈값일 수 없으며 시작시간은 종료시간과 같거나 종료시간보다 클 수 없습니다!").show();
-					
-					$("#closeTime").focus();
-					
-					return false;
-				}
 			}
 			
 			// 예약가능, 총  주차장 수 체크
