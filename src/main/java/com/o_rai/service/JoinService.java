@@ -28,28 +28,20 @@ public class JoinService {
 		aptVO.setLatitude(vo.getLatitude());
 		aptVO.setPostcode(vo.getPostcode());
 		
-		if (vo.getOpenTime() < vo.getCloseTime() && 
-				( vo.getOpenTime() >= 0 && vo.getOpenTime() <= 24) &&
-				( vo.getCloseTime() >= 0 && vo.getCloseTime() <=24) ) {
-			
-			String open_time = String.valueOf(vo.getOpenTime());
-			String close_time = String.valueOf(vo.getCloseTime());
-			
-			if ( String.valueOf(vo.getOpenTime()).length() < 2) {
-				aptVO.setOpen_time("0" + open_time + ":00");
-			} else {
-				aptVO.setOpen_time(open_time+":00");
-			}
-			
-			if ( String.valueOf(vo.getCloseTime()).length() < 2) {
-				aptVO.setClose_time("0"+close_time + ":00");
-			} else {
-				aptVO.setClose_time(close_time + ":00");
-			}
-			
+		
+		String open_time = String.valueOf(vo.getOpenTime());
+		String close_time = String.valueOf(vo.getCloseTime());
+		
+		if ( String.valueOf(vo.getOpenTime()).length() < 2) {
+			aptVO.setOpen_time("0" + open_time + ":00");
 		} else {
-			aptVO.setOpen_time(null);
-			aptVO.setClose_time(null);
+			aptVO.setOpen_time(open_time+":00");
+		}
+		
+		if ( String.valueOf(vo.getCloseTime()).length() < 2) {
+			aptVO.setClose_time("0"+close_time + ":00");
+		} else {
+			aptVO.setClose_time(close_time + ":00");
 		}
 		
 		aptVO.setBookable_count(vo.getBookableCount());

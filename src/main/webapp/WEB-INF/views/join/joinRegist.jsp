@@ -55,8 +55,8 @@
     		if($(this).is(":checked")) {
     			$(".limitTime").attr("readonly", "readonly");
     			
-    			$("#openTime").val("제한없음");
-    			$("#closeTime").val("제한없음");
+    			$("#openTime").val(0);
+    			$("#closeTime").val(0);
     		} else {
     			$(".limitTime").removeAttr("readonly");
     			$("#openTime").val("");
