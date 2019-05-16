@@ -15,6 +15,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.o_rai.domain.ReservationVO;
 import com.o_rai.model.ReservationDAO;
 
+@EnableScheduling
 @Service
 public class FcmService {
 	
@@ -59,7 +61,7 @@ public class FcmService {
 		logger.info("fcmTest running");
 		try {    
 			logger.info("fcmTest-try running");    
-			String path = "C:/Users/JaesungRyu/Documents/workspace-sts-3.9.7.RELEASE/o_rai/src/main/webapp/resources/google/fcmpushapp-2df0f-firebase-adminsdk-upb2t-1410edf9f7.json";
+			String path = "C:/Users/koseongmin/Documents/GitHub/o_rai/src/main/webapp/resources/google/fcmpushapp-2df0f-firebase-adminsdk-upb2t-1410edf9f7.json";
 			String MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
 			String[] SCOPES = { MESSAGING_SCOPE };
 
