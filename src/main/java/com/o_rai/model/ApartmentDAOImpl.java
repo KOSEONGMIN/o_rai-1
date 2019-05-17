@@ -101,6 +101,7 @@ public class ApartmentDAOImpl implements ApartmentDAO {
 	@Override
 	public Integer addBlackList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
+		System.out.println("AparmentDAOImpl : " + map);
 		return sqlSession.selectOne(namespace+".addBlackList", map);
 	}
 

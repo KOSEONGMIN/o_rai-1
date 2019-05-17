@@ -394,7 +394,7 @@
 	              				<td>입차 이전</td>
 	              				<td>출차 이전</td>
               					<td>대기중</td>
-              					<td><button class="btn-warning blackListBtn" data-bookIdx=<c:out value="${boardList.book_index}" /> data-option=<c:out value="${boardList.user_index}" />>블랙리스트 등록</button></td>
+              					<td><button class="btn-warning blackListBtn" data-bookIdx=<c:out value="${boardList.book_index}" /> data-options=<c:out value="${boardList.user_index}" />>블랙리스트 등록</button></td>
               				</tr> 
               			</c:forEach> 
               		</tbody> 

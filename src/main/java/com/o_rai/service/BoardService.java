@@ -89,17 +89,18 @@ public class BoardService {
 			isReportedPossible = (String) blackListChkResultMap.get("is_reported_possible");		
 		
 		System.out.println(blackListChkResultMap);
+		System.out.println(map);
 		
 		if ("N".equals(blackListChkResult)) {
 			resultMap.put("result", "FAILDAY");
-			resultMap.put("msg", "24시간 안에만 가능합니다.");
+			resultMap.put("msg", "24�떆媛� �븞�뿉留� 媛��뒫�빀�땲�떎.");
 			
 			return resultMap;
 		}
 		
 		if ("N".equals(isReportedPossible)) {
 			resultMap.put("result", "FAILALEADY");
-			resultMap.put("msg", "이미 신고되었습니다.");
+			resultMap.put("msg", "�씠誘� �떊怨좊릺�뿀�뒿�땲�떎.");
 			
 			return resultMap;
 		}

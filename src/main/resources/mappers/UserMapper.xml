@@ -18,7 +18,7 @@
 	</update>
 	
 	<select id="getLoginUser" resultType="com.o_rai.domain.UserVO" parameterType="String">
-	select * from user_table where user_id = #{user_id} and user_password = #{user_password} and user_grade = 1
+	select * from user_table where user_id = #{user_id} and user_password = #{user_password} and user_grade != 0
 	</select>
 	
 	<update id="updateToken">
