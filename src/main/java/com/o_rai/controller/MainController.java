@@ -20,6 +20,8 @@ import com.o_rai.service.LoginService;
 @Controller
 public class MainController {
 	
+	private boolean isFcmSchedulerOn = false;
+	
 	@Inject
 	FcmService fcmSvc;
 	
@@ -28,7 +30,10 @@ public class MainController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main() {
-		fcmSvc.fcmScheduler();
+		if(!isFcmSchedulerOn) {
+			isFcmSchedulerOn = true;
+			fcmSvc.fcmScheduler();
+		}
 
 		return "main/main";
 	}
