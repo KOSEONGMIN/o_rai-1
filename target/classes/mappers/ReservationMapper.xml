@@ -52,7 +52,7 @@
 	INNER JOIN apt_user_list.apt_table apt 
 	ON reservation.apt_index = apt.apt_index  
 	<![CDATA[
-	where (TIMESTAMPDIFF(MINUTE, current_timestamp(), reservation.start_time) < 15) && (TIMESTAMPDIFF(MINUTE, current_timestamp(), reservation.start_time) > 0);
+	where (TIMESTAMPDIFF(MINUTE, current_timestamp(), reservation.start_time) < 16) && (TIMESTAMPDIFF(MINUTE, current_timestamp(), reservation.start_time) > 0);
 	]]>
 	</select>
 	
