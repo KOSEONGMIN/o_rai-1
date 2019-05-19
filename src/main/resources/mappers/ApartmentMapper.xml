@@ -55,7 +55,14 @@
 			 , rt.finish_time
 			 , rt.enter_time
 			 , rt.leave_time
-			 , rt.is_used
+			 , rt.is_used,
+			 <![CDATA[
+			 CASE
+			 	WHEN rt.finish_time < now()
+			 	THEN 'N'
+		 		ELSE 'Y'
+		  		END AS is_btn_possible
+		  	]]>	
 	  	  FROM   reservation_table rt 
 	    LEFT OUTER JOIN user_table ut 
 	    	ON rt.user_index = ut.user_index 
@@ -116,7 +123,7 @@
 	<select id="selectBlackListPossibleChk" resultType="map">
 		<![CDATA[
 		SELECT CASE
-     	 		WHEN NOW() >= DATE_ADD(finish_time, INTERVAL 1 DAY)
+     	 		WHEN NOW() >= DATE_ADD(finish_time, INTERVAL 1 DAY) || NOW() <= start_time
      	 		THEN 'N'
 		 		ELSE 'Y'
 		  		END AS is_blackList_possible

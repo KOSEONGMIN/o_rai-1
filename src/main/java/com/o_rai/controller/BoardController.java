@@ -26,6 +26,8 @@ public class BoardController {
 		
 		List<Map<String, Object>> boardList = boardService.selectBoardList(vo);
 
+		System.out.println("####### vo : " + vo);
+		
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pagingVO", vo);
 		model.addAttribute("aptInform", boardService.selectAptInform());

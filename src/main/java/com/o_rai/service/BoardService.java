@@ -35,6 +35,8 @@ public class BoardService {
 		
 		vo.setPagingInfo(resultVO);
 		
+		System.out.println("### selectBoardList : " + vo);
+		
 		return apartmentDAO.selectBoardList(vo);
 	}
 
@@ -93,7 +95,7 @@ public class BoardService {
 		
 		if ("N".equals(blackListChkResult)) {
 			resultMap.put("result", "FAILDAY");
-			resultMap.put("msg", "24�떆媛� �븞�뿉留� 媛��뒫�빀�땲�떎.");
+			resultMap.put("msg", "사용시간 전 혹은 종료시간 이후 24시간 이내에만 신고가능 합니다.");
 			
 			return resultMap;
 		}

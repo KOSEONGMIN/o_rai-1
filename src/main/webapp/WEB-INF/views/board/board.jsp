@@ -93,6 +93,17 @@
 				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).parent("td").next().next().html(leaveTime);
 				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).parent("td").next().next().next().html("사용완료");
 			</c:if>
+			
+			<c:if test="${firstBoardList.is_btn_possible eq 'N'}" >
+				
+				$(".enterBtn" + <c:out value='${firstBoardList.book_index}' />).attr("disabled", true);
+				$(".enterBtn" + <c:out value='${firstBoardList.book_index}' />).removeClass("btn-primary");
+				
+				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).attr("disabled", true);
+				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).removeClass("btn-danger");
+				
+				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).parent("td").next().next().next().html("사용완료");
+			</c:if>
 		</c:forEach>
 		
 		var currentPage  = "<c:out value= '${pagingVO.page}' />",
