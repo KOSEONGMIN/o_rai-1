@@ -104,6 +104,12 @@
 				
 				$(".leaveBtn" + <c:out value='${firstBoardList.book_index}' />).parent("td").next().next().next().html("사용완료");
 			</c:if>
+			
+			var rowNum = "<c:out value='${firstBoardList.r_no}' />";
+			
+			rowNum = rowNum.substring(0, rowNum.length - 2);
+			$(".number" + <c:out value='${firstBoardList.book_index}' />).html(rowNum);
+			
 		</c:forEach>
 		
 		var currentPage  = "<c:out value= '${pagingVO.page}' />",
@@ -393,7 +399,7 @@
               		<tbody>
               			<c:forEach items="${boardList}" var="boardList" >
               				<tr> 
-	              				<th scope="row"><c:out value="${boardList.book_index}" /></th> 
+	              				<th class="number<c:out value='${boardList.book_index}' />" scope="row"></th> 
 	              				<td><a style="cursor:pointer" data-options="<c:out value="${boardList.user_index}" />" class="userDetail user<c:out value="${boardList.user_index}" />"><c:out value="${boardList.user_id}" /></a></td> 
 	              				<td><c:out value="${boardList.car_number}" /></td> 
 	              				<td><fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${boardList.start_time}" />

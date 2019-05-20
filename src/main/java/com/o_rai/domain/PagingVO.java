@@ -12,7 +12,6 @@ public class PagingVO {
 	private int prevPage		= 0;			// 이전 페이지 ("<<" 버튼 클릭 시)
 	private int nextPage		= 0; 			// 다음 페이지 (">>" 버튼 클릭 시)
 	private int apt_index;
-	private int[] rowInform     = new int[10]; 
 	
 	public int getPage() {
 		return page;
@@ -110,22 +109,5 @@ public class PagingVO {
 		
 		this.totCnt  = pagingVO.getTotCnt();
 		this.totPage = totPage;
-		
-		
-		int currentPage = pagingVO.getPage();
-		
-		int[] numInfo = new int[10];
-		
-		int begin = currentPage * 10 - 9;
-		int end   = currentPage * 10;
-		
-		int k = 0;
-		
-		for (int i = begin; i <= end; i++) {
-			numInfo[k++] = i;
-		}
-		
-		this.rowInform = numInfo;
 	}
-	
 }

@@ -29,6 +29,8 @@ public class BoardController {
 		System.out.println("####### vo : " + vo);
 		
 		model.addAttribute("boardList", boardList);
+		
+		System.out.println("####### boardList : " + boardList);
 		model.addAttribute("pagingVO", vo);
 		model.addAttribute("aptInform", boardService.selectAptInform());
 		
