@@ -95,19 +95,19 @@ public class BoardService {
 		
 		if ("N".equals(blackListChkResult)) {
 			resultMap.put("result", "FAILDAY");
-			resultMap.put("msg", "사용시간 전 혹은 종료시간 이후 24시간 이내에만 신고가능 합니다.");
+			resultMap.put("msg", "사용시간 후 혹은 종료시간 이후 24시간 이내에만 신고가능 합니다.");
 			
 			return resultMap;
 		}
 		
 		if ("N".equals(isReportedPossible)) {
 			resultMap.put("result", "FAILALEADY");
-			resultMap.put("msg", "�씠誘� �떊怨좊릺�뿀�뒿�땲�떎.");
+			resultMap.put("msg", "이미 신고된 예약입니다.");
 			
 			return resultMap;
 		}
 		
-		apartmentDAO.addBlackList(map);		// null
+		apartmentDAO.addBlackList(map);		
 		
 		apartmentDAO.addIsReported(map);
 		

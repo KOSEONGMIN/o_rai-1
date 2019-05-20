@@ -33,6 +33,7 @@ public class MainController {
 		if(!isFcmSchedulerOn) {
 			isFcmSchedulerOn = true;
 			fcmSvc.fcmScheduler();
+			System.out.println("FCM Scheduler start");
 		}
 
 		return "main/main";

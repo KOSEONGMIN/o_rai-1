@@ -53,12 +53,6 @@
 <script src="/resources/js/jquery-plugin-collection.js"></script>
 <script src="<c:url value="/resources/js/jquery.fileDownload.js"/>"></script>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- danger: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <script>
@@ -284,7 +278,7 @@
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-sm"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
+   <div class="modal-dialog modal-md"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" 
@@ -309,7 +303,7 @@
 <!--          	</div> -->
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
                닫기
             </button>
          </div>

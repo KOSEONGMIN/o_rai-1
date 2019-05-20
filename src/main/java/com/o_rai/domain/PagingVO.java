@@ -2,15 +2,15 @@ package com.o_rai.domain;
 
 public class PagingVO {
 
-	private int page  			= 1;			// 현재 페이지
-	private int rows  			= 10; 			// 한 페이지 row 수
+	private int page  			= 1;			
+	private int rows  			= 10; 			
 	private int scale 			= 5;
-	private int scaleStartPage 	= 1; 			// scale 시작 페이지
+	private int scaleStartPage 	= 1; 			
 	private int scaleEndPage 	= 1;
-	private int totPage			= 1;			// 전체 페이지 수
-	private int totCnt			= 0;			// 전체 게시글 수
-	private int prevPage		= 0;			// 이전 페이지 ("<<" 버튼 클릭 시)
-	private int nextPage		= 0; 			// 다음 페이지 (">>" 버튼 클릭 시)
+	private int totPage			= 1;			
+	private int totCnt			= 0;			
+	private int prevPage		= 0;			
+	private int nextPage		= 0; 			
 	private int apt_index;
 	
 	public int getPage() {
@@ -93,14 +93,14 @@ public class PagingVO {
 	public void setPagingInfo(PagingVO pagingVO) {
 		int totPage = pagingVO.getTotPage();
 		
-		int nowScale 	= (this.page - 1) / this.scale + 1;		// 현재 화면의 스케일
-		int startPage 	= (nowScale - 1) * this.scale + 1;		// 스케일 시작 페이지
-		int endPage		= startPage + this.scale - 1;			// 스케일 끝 페이지
+		int nowScale 	= (this.page - 1) / this.scale + 1;		
+		int startPage 	= (nowScale - 1) * this.scale + 1;		
+		int endPage		= startPage + this.scale - 1;			
 		
 		endPage = (endPage > totPage) ? totPage : endPage;
 		
-		int prevPage = startPage - 1;   	// 이전페이지
-		int nextPage = endPage + 1;			// 다음페이지
+		int prevPage = startPage - 1;   	
+		int nextPage = endPage + 1;			
 		
 		this.scaleStartPage = startPage;
 		this.scaleEndPage = endPage;

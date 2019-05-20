@@ -59,11 +59,10 @@ public class JoinController {
 		if (result == 1) {
 			return "join/joinComplete.join";
 		}else {
-			rttr.addFlashAttribute("msg", "È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
+			rttr.addFlashAttribute("msg", "È¸¿ø°¡ÀÔ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
 			
 			return "redirect:join/joinRegist.join";
 		}
-		
 	}
 	
 	// Email redundancy check 
@@ -90,11 +89,8 @@ public class JoinController {
 		}
 	}
 	
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/joinDetail")
 	public String joinDetail(HttpServletRequest request, ModelMap model) throws Exception {
-		// TODO: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ form ï¿½ï¿½ï¿½ç¼­ jspï¿½ï¿½ ï¿½Ñ·ï¿½ï¿½Ö±ï¿½
-		
 		ApartmentVO aptVO = new ApartmentVO();
 		SessionVO session = new SessionVO();
 		
@@ -131,7 +127,7 @@ public class JoinController {
 			
 			return "join/joinModify.join";	
 		} else {
-			rttr.addFlashAttribute("msg", "È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö½Ê½Ã¿ï¿½.");
+			rttr.addFlashAttribute("msg", "È¸¿ø¼öÁ¤¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
 			
 			return "redirect:/joinDetail"; 
 		}
