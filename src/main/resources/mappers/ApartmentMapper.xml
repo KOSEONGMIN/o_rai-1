@@ -157,7 +157,7 @@
 		   	   fee = #{fee}, 
 		   	   open_time = #{open_time}, 
 		   	   close_time = #{close_time}, 
-		   	   using_count = #{using_count}, 
+		   	   bookable_count = #{bookable_count}, 
 		   	   total_count = #{total_count}
 		WHERE apt_index = #{apt_index}
 	</update>
