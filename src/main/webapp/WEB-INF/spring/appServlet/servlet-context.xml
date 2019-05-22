@@ -45,6 +45,10 @@
       <interceptor>
          <mapping path="/joinDetail"/>
          <mapping path="/board"/>
+         <mapping path="/addCurrentDate"/>
+         <mapping path="/selectUserInform"/>
+         <mapping path="/addBlackList"/>
+         <mapping path="/logoutProc"/>
          <mapping path="/joinModify"/>
          <mapping path="/downloadExcel"/>
          <beans:bean id="intercepter" class="com.o_rai.cmmn.Interceptor" />

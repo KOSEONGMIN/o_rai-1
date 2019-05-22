@@ -267,7 +267,6 @@
 	            }
 	        });
 	        
-	        // 버튼의 원래 클릭 이벤트를 중지 시키기 위해 필요합니다.
 	        return false;
     	});
 		
@@ -387,7 +386,7 @@
               				<th>입차시간</th>
               				<th>출차시간</th>
               				<th>사용여부</th>
-              				<th>블랙리스트</th>  
+              				<th>신고</th>  
               			</tr> 
               		</thead> 
               		<tbody>
@@ -396,8 +395,8 @@
 	              				<th class="number<c:out value='${boardList.book_index}' />" scope="row"></th> 
 	              				<td><a style="cursor:pointer" data-options="<c:out value="${boardList.user_index}" />" class="userDetail user<c:out value="${boardList.user_index}" />"><c:out value="${boardList.user_id}" /></a></td> 
 	              				<td><c:out value="${boardList.car_number}" /></td> 
-	              				<td><fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${boardList.start_time}" />
-	              					~ <fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${boardList.finish_time}" />
+	              				<td><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${boardList.start_time}" />
+	              					~ <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${boardList.finish_time}" />
 	              				</td>
 	              				<td><button class="btn-primary enterBtn enterBtn<c:out value='${boardList.book_index}' />" data-options="<c:out value='${boardList.book_index}' />">입차</button>
 	              					<button class="btn-danger leaveBtn leaveBtn<c:out value='${boardList.book_index}' />" data-options="<c:out value='${boardList.book_index}' />">출차</button>
@@ -405,7 +404,7 @@
 	              				<td>입차 이전</td>
 	              				<td>출차 이전</td>
               					<td>대기중</td>
-              					<td><button class="btn-warning blackListBtn" data-bookIdx=<c:out value="${boardList.book_index}" /> data-options=<c:out value="${boardList.user_index}" />>블랙리스트 등록</button></td>
+              					<td><button class="btn-warning blackListBtn" data-bookIdx=<c:out value="${boardList.book_index}" /> data-options=<c:out value="${boardList.user_index}" />>신고</button></td>
               				</tr> 
               			</c:forEach> 
               		</tbody> 

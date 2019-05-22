@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -21,6 +22,7 @@ public class BoardService {
 	@Autowired
 	private ApartmentDAO apartmentDAO;
 	
+	@Transactional
 	public List<Map<String, Object>> selectBoardList(PagingVO vo) {
 		HttpServletRequest request = ((ServletRequestAttributes)
 				RequestContextHolder.getRequestAttributes()).getRequest();
@@ -35,11 +37,10 @@ public class BoardService {
 		
 		vo.setPagingInfo(resultVO);
 		
-		System.out.println("### selectBoardList : " + vo);
-		
 		return apartmentDAO.selectBoardList(vo);
 	}
-
+	
+	@Transactional
 	public HashMap<String, Object> addCurrentDate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -78,6 +79,7 @@ public class BoardService {
 		return apartmentDAO.selectUserInform(map);	
 	}
 
+	@Transactional
 	public HashMap<String, Object> addBlackList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
