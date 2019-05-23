@@ -137,7 +137,7 @@
 				success : function(data) {
 					
 					if (data.result === "SUCCESS") {
-					
+						
 						that.attr("disabled", true);
 						that.removeClass("btn-primary");
 
@@ -146,6 +146,8 @@
 						that.parent("td").next().next().next().html("사용중"); */
 						
 						location.reload();
+					} else {
+						alert(data.msg);
 					}
 						
 				}

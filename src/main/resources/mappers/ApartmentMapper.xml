@@ -92,6 +92,13 @@
 	
 	<select id="selectCurrentDate" resultType="map">
 		SELECT
+			<![CDATA[
+			CASE
+			 	WHEN DATE_SUB(start_time, INTERVAL 5 MINUTE) <= NOW()
+			 	THEN 'Y'
+		 		ELSE 'N'
+		  		END AS is_start_possible,
+		  	]]>
 			<choose>
 		   		<when test="way.equals('enter')">
 		   			enter_time

@@ -45,6 +45,15 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
+		Map<String, Object> currentMap = apartmentDAO.selectCurrentDate(map);
+		
+		if (currentMap.get("is_start_possible").equals("N")) {
+			resultMap.put("result", "FAIL");
+			resultMap.put("msg", "시작시간 5분이전 부터 입차 가능 합니다.");
+			
+			return resultMap;
+		}
+		
 		if (apartmentDAO.addCurrentDate(map) == 1) {
 			
 			resultMap.put("result", "SUCCESS");
@@ -52,9 +61,9 @@ public class BoardService {
 			String way = (String) map.get("way");
 			
 			if (way.equals("enter")) {
-				resultMap.put("time", apartmentDAO.selectCurrentDate(map).get("enter_time"));
+				resultMap.put("time", currentMap.get("enter_time"));
 			} else {
-				resultMap.put("time", apartmentDAO.selectCurrentDate(map).get("leave_time"));
+				resultMap.put("time", currentMap.get("leave_time"));
 			}
 		}
 		

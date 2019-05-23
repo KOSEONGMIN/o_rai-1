@@ -59,7 +59,7 @@ public class JoinController {
 		if (result == 1) {
 			return "join/joinComplete.join";
 		}else {
-			rttr.addFlashAttribute("msg", "íšŒì›ê°€ì… ì‹¤íŒ¨");
+			rttr.addFlashAttribute("msg", "È¸¿ø°¡ÀÔ ½ÇÆĞ");
 			
 			return "redirect:join/joinRegist.join";
 		}
@@ -127,7 +127,7 @@ public class JoinController {
 			
 			return "join/joinModify.join";	
 		} else {
-			rttr.addFlashAttribute("msg", "íšŒì›ì •ë³´ ìˆ˜ì • ì‹¤íŒ¨");
+			rttr.addFlashAttribute("msg", "¼öÁ¤½ÇÆĞ");
 			
 			return "redirect:/joinDetail"; 
 		}
